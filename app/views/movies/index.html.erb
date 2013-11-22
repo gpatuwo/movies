@@ -1,0 +1,31 @@
+<h1><a href = "<%= root_path%>">Welcome to RetFlix!</a></h1>
+
+<h2>See our collection of movies below. </h2>
+
+<%= form_tag "/", :method => :get do %>
+	<%= submit_tag "Tell Me More About:"%> 
+	<%= text_field_tag :q, params[:q] %>
+<% end %>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Year</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @movies.each do |movie| %>
+		<tr>
+			<td>
+				<a href="<%= movie_path(movie) %>"> <%= movie.title %></a>
+			</td>
+			<td><%= movie.description %></td>
+			<td><%= movie.year_released %></td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>
+
+<br>Are we missing a movie? <a href="<%= new_movie_path %>">++Add a movie here++</a></br>
